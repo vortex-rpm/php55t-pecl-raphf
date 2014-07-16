@@ -21,7 +21,7 @@ URL: http://pecl.php.net/package/%{pecl_name}
 Source: http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: %{php_base}-devel, %{php_base}-cli, %{php_base}-pear, zlib-devel
+BuildRequires: %{php_base}-devel, %{php_base}-cli, %{php_base}-pear
 Requires(post): %{__pecl}
 Requires(postun): %{__pecl}
 
@@ -34,6 +34,13 @@ Requires: %{php_base}-api = %{php_apiver}
 
 %description
 A reusable split-off of pecl_http's persistent handle and resource factory API.
+
+
+%package devel
+Group: Development/Languages
+Summary: files needed to build PHP extensions
+Provides: %{name}-devel = %{version}-%{release}
+Provides: %{real_name}-devel = %{version}-%{release}
 
 
 %prep
@@ -85,6 +92,11 @@ fi
 %doc %{pecl_name}-%{version}/CREDITS %{pecl_name}-%{version}/LICENSE
 %config(noreplace) %{_sysconfdir}/php.d/%{pecl_name}.ini
 %{php_extdir}/%{pecl_name}.so
+%{pecl_xmldir}/%{pecl_name}.xml
+
+%files devel
+%defattr(-, root, root, -)
+%{_includedir}/php/ext/%{pecl_name}/php_%{pecl_name}.h
 %{pecl_xmldir}/%{pecl_name}.xml
 
 
