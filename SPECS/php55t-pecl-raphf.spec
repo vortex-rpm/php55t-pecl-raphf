@@ -42,6 +42,9 @@ Summary: files needed to build PHP extensions
 Provides: %{name}-devel = %{version}-%{release}
 Provides: %{real_name}-devel = %{version}-%{release}
 
+%description devel
+Development files for raphf.
+
 
 %prep
 %setup -c -n %{real_name}-%{version} -q
