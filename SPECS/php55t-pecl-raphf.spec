@@ -12,7 +12,7 @@
 Summary: resource and persistent handles factory
 Name: %{php_base}-pecl-raphf
 Version: 1.0.4
-Release: 1.vortex%{?dist}
+Release: 2.vortex%{?dist}
 License: PHP
 Group: Development/Languages
 Vendor: Vortex RPM
@@ -64,11 +64,6 @@ cd %{pecl_name}-%{version}
 
 # Drop in the bit of configuration
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/php.d
-%{__cat} > %{buildroot}%{_sysconfdir}/php.d/%{pecl_name}.ini << 'EOF'
-; Enable %{pecl_name} extension module
-extension=%{pecl_name}.so
-
-EOF
 
 # Install XML package description
 # use 'name' rather than 'pecl_name' to avoid conflict with pear extensions
@@ -93,16 +88,17 @@ fi
 %files
 %defattr(-, root, root, -)
 %doc %{pecl_name}-%{version}/CREDITS %{pecl_name}-%{version}/LICENSE
-%config(noreplace) %{_sysconfdir}/php.d/%{pecl_name}.ini
 %{php_extdir}/%{pecl_name}.so
 %{pecl_xmldir}/%{pecl_name}.xml
 
 %files devel
 %defattr(-, root, root, -)
 %{_includedir}/php/ext/%{pecl_name}/php_%{pecl_name}.h
-%{pecl_xmldir}/%{pecl_name}.xml
 
 
 %changelog
+* Wed Jul 16 2014 Ilya Otyutskiy <ilya.otyutskiy@icloud.com> - 1.0.4-2.vortex
+- Fixes.
+
 * Wed Jul 16 2014 Ilya Otyutskiy <ilya.otyutskiy@icloud.com> - 1.0.4-1.vortex
 - Initial packaging.
